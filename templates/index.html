@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Student Performance Prediction</h1>
+        <p>Enter student details below to predict final marks</p>
+    </div>
+
+    {% if error %}
+    <div class="error-box">{{ error }}</div>
+    {% endif %}
+
+    <form action="/predict" method="POST" class="form-card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Study Hours per Day</label>
+                <input type="number" name="study_hours"
+                       min="0" max="24" step="0.5"
+                       placeholder="e.g. 6" required>
+                <span class="hint">How many hours the student studies daily</span>
+            </div>
+
+            <div class="form-group">
+                <label>Attendance (%)</label>
+                <input type="number" name="attendance"
+                       min="0" max="100" step="1"
+                       placeholder="e.g. 85" required>
+                <span class="hint">Percentage of classes attended</span>
+            </div>
+
+            <div class="form-group">
+                <label>Previous Exam Marks</label>
+                <input type="number" name="previous_marks"
+                       min="0" max="100" step="0.5"
+                       placeholder="e.g. 72" required>
+                <span class="hint">Marks scored in last exam (out of 100)</span>
+            </div>
+
+            <div class="form-group">
+                <label>Sleep Hours per Day</label>
+                <input type="number" name="sleep_hours"
+                       min="0" max="24" step="0.5"
+                       placeholder="e.g. 7" required>
+                <span class="hint">Average hours of sleep per night</span>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Extracurricular Activities</label>
+                <select name="extracurricular" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">Yes — participates in activities</option>
+                    <option value="0">No — does not participate</option>
+                </select>
+                <span class="hint">Does the student participate in sports, clubs, etc?</span>
+            </div>
+
+        </div>
+
+        <button type="submit" class="predict-btn">Predict Performance</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Prediction Result</h1>
+        <p>Based on the student data entered</p>
+    </div>
+
+    <div class="result-card {{ grade_class }}">
+        <div class="marks-display">
+            <span class="marks-number">{{ marks }}</span>
+            <span class="marks-label">/ 100</span>
+        </div>
+        <div class="grade-badge {{ grade_class }}">{{ grade }} Performance</div>
+        <p class="result-message">{{ message }}</p>
+    </div>
+
+    <div class="details-card">
+        <h3>Input Summary</h3>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Study Hours</span>
+                <span class="detail-value">{{ study_hours }} hrs/day</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Attendance</span>
+                <span class="detail-value">{{ attendance }}%</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Previous Marks</span>
+                <span class="detail-value">{{ previous_marks }} / 100</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Sleep Hours</span>
+                <span class="detail-value">{{ sleep_hours }} hrs/day</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Extracurricular</span>
+                <span class="detail-value">{{ extracurricular }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="graphs-section">
+        <h3>Model Insights</h3>
+        <div class="graphs-grid">
+            <div class="graph-card">
+                <p class="graph-title">Feature Importance</p>
+                <img src="{{ url_for('static', filename='feature_importance.png') }}"
+                     alt="Feature Importance">
+            </div>
+            <div class="graph-card">
+                <p class="graph-title">Actual vs Predicted</p>
+                <img src="{{ url_for('static', filename='actual_vs_predicted.png') }}"
+                     alt="Actual vs Predicted">
+            </div>
+            <div class="graph-card">
+                <p class="graph-title">Model Comparison</p>
+                <img src="{{ url_for('static', filename='model_comparison.png') }}"
+                     alt="Model Comparison">
+            </div>
+            <div class="graph-card">
+                <p class="graph-title">Grade Distribution</p>
+                <img src="{{ url_for('static', filename='grade_distribution.png') }}"
+                     alt="Grade Distribution">
+            </div>
+        </div>
+    </div>
+
+    <a href="/" class="back-btn">Predict Another Student</a>
+
+</div>
+
+</body>
+</html>
